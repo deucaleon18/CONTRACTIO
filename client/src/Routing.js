@@ -1,31 +1,43 @@
 import React from 'react'
-import {BrowserRouter as Router,Route} from 'react-router-dom'
-import AccountDetails from './components/AccountDetails/AccountDetails'
-import CreateAccount from './components/CreateAccount/CreateAccount'
-import DisplayAccounts from './components/DisplayAccounts/DisplayAccounts'
-import MainSection from './components/MainSection/MainSection'
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage/HomePage";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
+import ContractsDisplay from "./pages/ContractsDisplay/ContractsDisplay";
+// import NewPost from "./pages/NewPost/NewPost";
+import Contract from './pages/Contract/Contract';
 
 const Routing = () => {
     return (
-      <div>
-        <Router>
+      <>
+        <BrowserRouter>
+          <Routes>
+             <Route exact path="/" element={<HomePage/>}></Route>
+            <Route exact path="/login" element={<Login/>}></Route>
 
-          <Route exact path="/">
-            <MainSection />
-          </Route>
-          <Route exact path="/create">
-            <CreateAccount />
-          </Route>
-          <Route exact path="/accounts">
-            <DisplayAccounts />
-          </Route>
-          <Route exact path="/accounts/:id">
-            <AccountDetails />
-          </Route>
-         
-        </Router>
-      </div>
+            {/* {localStorage.getItem("token") ? (
+              <Route exact path="/new" element={<NewPost />}></Route>
+            ) : (
+              <Route exact path="/new" element={<Login/>}></Route>
+            )} */}
+
+            <Route exact path="/register" element={<Register/>}></Route>
+
+            <Route
+              exact
+              path="/contracts/:id"
+              element={<Contract/>}
+            ></Route>
+            
+           {localStorage.getItem("token") ? (
+              <Route exact path="/app" element={<ContractsDisplay/>}></Route>
+            ) : (
+              <Route exact path="/app" element={<Login/>}></Route>
+            )}
+
+          </Routes>
+        </BrowserRouter>
+      </>
     );
 }
 

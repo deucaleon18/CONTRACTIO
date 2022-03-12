@@ -1,15 +1,20 @@
 import React from "react";
-
-import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
 import Routing from "./Routing";
+import Navbar from "./components /Navbar/Navbar";
+import Footer from "./components /Footer/Footer";
+import "./App.css"
 
 
 const App = () => {
+
+
   return (
     <div className="app">
-     <Navbar/>
-     <Routing/>
+
+        <Navbar />
+        <Routing />
+        <Footer />
+ 
     </div>
   );
 };

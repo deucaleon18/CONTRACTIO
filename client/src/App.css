@@ -1,3 +1,17 @@
+*{  
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    overflow-x:hidden;
+    background-color: #2a2a72;
+    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);;
+}
+:root{
+
+--primary:
+
+}
 .app{
-background-color: #e84393;
-background-image: linear-gradient(145deg, #e7c9d8 0%, #000000 74%);}
+    background-color: #2a2a72;
+    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);;
+}
