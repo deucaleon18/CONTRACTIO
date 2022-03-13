@@ -1,84 +1,111 @@
 import React,{useState,useEffect} from 'react'
 import useBasicFetch from '../../hooks/useBasicFetch'
-
+import './Register.css'
+import axios from 'axios'
 
 const Register = () => {
 
-
     const [web3,account,contract] = useBasicFetch();
-
-    // const [image, setImage] = useState(undefined);
-    // const [imageUrl, setImageUrl] = useState(undefined);
-    // const [buffer, setBuffer] = useState(undefined);
-
-
     const [username,setUsername]=useState("")
     const [email, setEmail] = useState("");
     const [password,setPassword]=useState("")
 
-    // const [paymentAccount,setPaymentAccount]=useState("")
+    // const [image, setImage] = useState(undefined);
+    // const [imageUrl, setImageUrl] = useState(undefined);
+    // const [buffer, setBuffer] = useState(undefined);
     // const [imageHash,setImageHash]=useState("")
-  
-
 
 //   Register handler
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-    //     await client
-    //       .add(buffer)
-    //       .then(async (res) => {
-    //         console.log(res.path)
-    //         setImageHash(res.path);
-    //             await contract.methods
-    //               .createUser(email, username, paymentAccount)
-    //               .send({ from: account })
-    //               .then(async(res) => {
-    //                 console.log(res);
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        // await client
+        //   .add(buffer)
+        //   .then(async (res) => {
+        //     console.log(res.path)
+        //     setImageHash(res.path);
+
+              await contract.methods
+                  .addUser( username,email)
+                  .send({ from: account })
+                  .then(async(res) => {
+                    console.log(res);
                     
-    //                 // eslint-disable-next-line no-console
-    //                 await axios
-    //                   .post("http://localhost:5000/register/", {
-    //                     username,
-    //                     email,
-    //                     password,
-    //                     paymentAccount,
-    //                     imageHash
-    //                   })
-    //                   .then((res) => {
-    //                     console.log(res);
-    //                     localStorage.setItem("token", res.data.token);
-    //                     localStorage.setItem("username", res.data.user.username);
-    //                     localStorage.setItem("email", res.data.user.email);
-    //                     localStorage.setItem(
-    //                       "paymentAccount",
-    //                       res.data.user.paymentAccount
-    //                     );
-    //                   })
-    //                   .then(() => {
-    //                     window.location.href = "/app";
-    //                   })
-    //                   .catch((err) => {
-    //                     console.log(err);
-    //                   });
-    //               })
+                    // eslint-disable-next-line no-console
+                    await axios
+                      .post("http://localhost:5000/register/", {
+                        username,
+                        email,
+                        password,
+                        // paymentAccount,
+                        // imageHash
+                      })
+                      .then((res) => {
+                        console.log(res);
+                        localStorage.setItem("token", res.data.token);
+                        localStorage.setItem("username", res.data.user.username);
+                        localStorage.setItem("email", res.data.user.email);
+                      
+                      })
+                      .then(() => {
+                        window.location.href = "/bid";
+                      })
+                      .catch((err) => {
+                        console.log(err);
+                      });
+                  })
     
-    //               .catch((err) => {
-    //                 console.log(err);
-    //               });
-    //             })
-    //             .catch((err)=>{
-    //               console.log(err)
+                  .catch((err) => {
+                    console.log(err);
+                  });
+
+                }
+
+      //           )
+      //           .catch((err)=>{
+      //             console.log(err)
     
-    //             })
+      //           })
                 
-    //   };
-
-
-      
-
+      // };
 
   return (
-    <div>Register</div>
+    <div>
+    <div className='header'>Register</div>
+    <div className='register-page'>
+   
+    <input type="text" className='input-field'
+    value={username}
+    onChange={(e) => {
+      setUsername(e.target.value);
+    }}
+    />
+    
+    <br/>
+    
+    <input type="text" className='input-field'
+     value={email}
+     onChange={(e) => {
+       setEmail(e.target.value);
+     }}
+    />
+  
+
+    <br/>
+
+    <input type="text"  className='input-field'
+     value={password}
+     onChange={(e) => {
+       setPassword(e.target.value);
+     }}
+     />
+   
+
+    <button type="submit" onClick={handleSubmit} className='submit-buttons'>REGISTER</button>
+    </div>
+    </div>
+
+    
   )
 }
 
