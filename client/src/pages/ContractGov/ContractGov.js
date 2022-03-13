@@ -140,7 +140,12 @@ const ContractGov = () => {
             <h1>DESCRIPTION:{bid.desc}</h1>
             <h1>AMOUNT:{bid.amount}</h1>
             <h1>BIDDER:{bid.bidder}</h1>
-            <button className="general-button" onClick={approveBid(bid.id)}> APPROVE BID</button>
+            <button className="general-button" 
+            
+            
+            onClick={()=>approveBid(bid.id)}
+            
+            > APPROVE BID</button>
           </div>
           
           )
