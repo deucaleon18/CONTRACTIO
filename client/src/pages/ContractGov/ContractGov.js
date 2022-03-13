@@ -18,8 +18,6 @@ const ContractGov = () => {
   const [bids,setBids]=useState([])
 
 
-  
-
   // //Use the same variable predefined after " :"
   const { id } = useParams();
   const [web3,account,contract,contractAddress]=useBasicFetch()
@@ -28,6 +26,7 @@ const ContractGov = () => {
 
    await contract.methods.approveBid(bidSerial,id).send({from:account})
   .then(async(res) => {
+       window.location.href="/gov";
        console.log(res);
   })
 
