@@ -28,11 +28,13 @@ const Login = () => {
   
         })
         .then(()=>{
-          if(!localStorage.getItem("admin")){
+          if(localStorage.getItem("admin")==='false'){
             window.location.href = "/bid";
            }
-
+          else{
             window.location.href = "/gov";
+          }
+            
         
         
         })

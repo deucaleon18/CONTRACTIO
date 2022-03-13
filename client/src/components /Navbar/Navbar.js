@@ -2,7 +2,17 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 
+
+
 const Navbar = () => {
+
+const handleLogout=()=>{
+  localStorage.removeItem("token")
+  localStorage.removeItem("username")
+  localStorage.removeItem("admin")
+  localStorage.removeItem("email")
+}
+
   return (
     <div className="navbar">
       <div
@@ -26,13 +36,19 @@ const Navbar = () => {
             <li className="navlistelements">CONTRACTS</li>
         </a>
       }
-          
+           {!localStorage.getItem("token")?
+          <>
           <a href="/register">
             <li className="navlistelements">REGISTER</li>
           </a>
+
           <a href="/login">
             <li className="navlistelements">LOGIN</li>
           </a>
+        </>
+:  <a href="/">
+<li className="navlistelements" onClick={handleLogout}>LOGOUT</li>
+</a>}
         </ul>
       </div>
     </div>
